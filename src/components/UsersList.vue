@@ -21,20 +21,13 @@ export default {
   data: () => {
     return {
       profile: null,
-      usernames: [
-        "khasanovdiyor",
-        "mirjahonn",
-        "akbarov_",
-        "komiljon4457",
-        "UmidMamasoliev",
-        "azizbekhamidov11",
-        "jasur-sh",
-      ],
+      usernames: process.env.VUE_APP_USERNAMES,
       profiles: [],
     };
   },
   methods: {
     async getUserProfile() {
+      this.usernames = this.usernames.split(", ");
       const promises = this.usernames.map((profile) => {
         return this.axios.get(
           `https://leetcode-stats-api.herokuapp.com/${profile}`
@@ -57,7 +50,6 @@ export default {
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
 .users-list {
   margin: 2rem;
