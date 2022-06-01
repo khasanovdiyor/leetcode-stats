@@ -30,7 +30,7 @@ export default {
       this.usernames = this.usernames.split(", ");
       const promises = this.usernames.map((profile) => {
         return this.axios.get(
-          `https://leetcode-stats-api.herokuapp.com/${profile}`
+          `${process.env.VUE_APP_BASE_API}/${profile}`
         );
       });
 
