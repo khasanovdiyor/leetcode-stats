@@ -2,22 +2,26 @@
   <div class="user">
     <div class="username">{{ order }}. {{ profile.username }}</div>
     <div class="questions">
-      <span class="easy question-type">Easy: {{ profile.easySolved }}</span>
-      <span class="medium question-type"
-        >Medium: {{ profile.mediumSolved }}</span
+      <span
+        :class="`question-type ${level.difficulty.toLowerCase()}`"
+        v-for="(level, idx) of profile.submitStats.submissionNum"
+        :key="idx"
+        >{{ level.difficulty }}: {{ level.count }}</span
       >
-      <span class="hard question-type">Hard: {{ profile.hardSolved }}</span>
-      <span class="total question-type">Total: {{ profile.totalSolved }}</span>
     </div>
-    <div class="missed-days">Missed Days: 0</div>
+    <div class="missed-days">Missed Days: {{ profile.missedDaysCount }}</div>
   </div>
 </template>
 
 <script>
 export default {
   props: {
-    profile: {},
-    order: {},
+    profile: {
+      type: Object,
+    },
+    order: {
+      type: Number,
+    },
   },
 };
 </script>

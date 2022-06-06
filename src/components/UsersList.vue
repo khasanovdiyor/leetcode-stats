@@ -27,21 +27,9 @@ export default {
   },
   methods: {
     async getUserProfile() {
-      this.usernames = this.usernames.split(", ");
-      const promises = this.usernames.map((profile) => {
-        return this.axios.get(
-          `${process.env.VUE_APP_BASE_API}/${profile}`
-        );
-      });
-
-      const profiles = await Promise.all(promises);
-      this.profiles = profiles.map((profile, idx) => {
-        profile.data.username = this.usernames[idx];
-        return profile.data;
-      });
-      this.profiles = this.profiles.sort(
-        (b, a) => a.totalSolved - b.totalSolved
-      );
+      this.profiles = (
+        await this.axios.get(`${process.env.VUE_APP_BASE_API}`)
+      ).data;
     },
   },
   mounted() {
