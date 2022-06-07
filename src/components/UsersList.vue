@@ -28,7 +28,7 @@ export default {
   methods: {
     async getUserProfile() {
       this.profiles = (
-        await this.axios.get(`${process.env.VUE_APP_BASE_API}`)
+        await this.axios.get(`${process.env.VUE_APP_BASE_API}/profiles`)
       ).data;
     },
   },
